@@ -4,14 +4,27 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: './',
   root: 'src',
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
+  publicDir: '../public',
+
+  plugins: [react(), tailwindcss()],
+
   build: {
+    outDir: '../dist',
+    emptyOutDir: true,
+    assetsDir: '',
     rollupOptions: {
-      input: "src/index.html",
+      input: {
+        popup: 'src/index.html',
+        'utils/service': 'src/utils/service.ts',
+        'utils/event/overlay': 'src/utils/event/overlay.ts',
+      },
+      output: {
+        entryFileNames: '[name].js',
+        chunkFileNames: 'assets/chunks/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash][extname]',
+      },
     },
-  }
+  },
 })

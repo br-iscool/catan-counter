@@ -1,18 +1,24 @@
 export default function App() {
-	const startSelecting = () => {
-		chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-			chrome.tabs.sendMessage(tabs[0].id!, { action: "start-selecting" });
-		});
-	}
-	return (
-		<div className="p-4 w-50">
-			<h1 className="font-bold text-lg mb-2">Colonist Card Counter</h1>
-			<button 
-				onClick={startSelecting}
-				className="text-white slate-900 hover:slate-900/90 box-border border border-transparent font-medium leading-5 rounded-base text-sm px-4 py-2.5 text-center inline-flex items-center"
-			>
-				Select Area
-			</button>
-		</div>
-	);
+    const startSelecting = () => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            const tabId = tabs?.[0]?.id;
+            if (!tabId) return;
+            chrome.tabs.sendMessage(tabId, { action: "start-selecting" });
+        });
+    };
+
+    return (
+        <div className="w-[340px] flex flex-col gap-4 bg-slate-50">
+            <h1 className="mx-auto text-center text-white font-semibold tracking-tight">
+                Colonist Card Counter
+            </h1>
+
+            <button
+                onClick={startSelecting}
+                className="mx-auto rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-slate-800"
+            >
+                Select Area
+            </button>
+        </div>
+    );
 }

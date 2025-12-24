@@ -15,7 +15,7 @@
 		{
 			"matches": ["<all_urls>"],
 			"js": ["utils/event/overlay.js"],
-			"css": ["styles/overlay.css"]
+			"css": ["overlay.css"]
 		}
 	]
 }

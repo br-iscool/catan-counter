@@ -8,14 +8,19 @@ export default function App() {
     };
 
     return (
-        <div className="w-[340px] flex flex-col gap-4 bg-slate-50">
-            <h1 className="mx-auto text-center text-white font-semibold tracking-tight">
+        <div className="min-h-100 min-w-87.5 flex flex-col justify-center gap-6 bg-[#242424] p-2">
+            <h1 className="text-4xl mx-auto text-center text-slate-50 font-semibold">
                 Colonist Card Counter
             </h1>
 
+            <p className="mx-auto text-center text-slate-200/90">
+                <span className="text-slate-200 font-semibold">Instructions: </span>
+                Click the button below to select the area to detect at the start of a game. The extension will then automatically count the cards of every player and create an overlay to display the information.
+            </p>
+
             <button
                 onClick={startSelecting}
-                className="mx-auto rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-slate-800"
+                className="mx-auto text-white bg-neutral-900 px-5 py-2.5 rounded-lg border border-transparent transition cursor-pointer hover:border-indigo-500 hover:translate-y-[0.1rem]"
             >
                 Select Area
             </button>

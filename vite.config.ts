@@ -17,8 +17,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         popup: 'src/index.html',
-        'utils/service': 'src/utils/service.ts',
-        'utils/event/overlay': 'src/utils/event/overlay.ts',
+        'scripts/utils/service': 'src/scripts/utils/service.ts',
+        'scripts/utils/ocr': 'src/scripts/utils/ocr.ts',
+        'scripts/overlay': 'src/scripts/overlay.ts',
       },
       output: {
         entryFileNames: '[name].js',

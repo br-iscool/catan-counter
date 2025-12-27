@@ -3,7 +3,33 @@ export default function App() {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const tabId = tabs?.[0]?.id;
             if (!tabId) return;
-            chrome.tabs.sendMessage(tabId, { action: "start-selecting" });
+
+            const sendStartSelection = () => {
+                chrome.tabs.sendMessage(tabId, { action: "start-selection" }, () => {
+                    const err = chrome.runtime.lastError;
+                    if (!err) return;
+
+                    chrome.scripting.insertCSS({
+                        target: { tabId },
+                        files: ["overlay.css"],
+                    }, () => {
+                        chrome.scripting.executeScript({
+                            target: { tabId },
+                            files: ["scripts/overlay.js", "scripts/utils/ocr.js"],
+                        }, () => {
+                            const injectErr = chrome.runtime.lastError;
+                            if (injectErr) {
+                                console.warn("Could not inject content scripts:", injectErr.message);
+                                return;
+                            }
+
+                            chrome.tabs.sendMessage(tabId, { action: "start-selection" });
+                        });
+                    });
+                });
+            };
+
+            sendStartSelection();
         });
     };
 

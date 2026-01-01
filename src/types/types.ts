@@ -1,33 +1,33 @@
-export type startSelectionMsg = {
+export type StartSelectionMsg = {
 	action: "start-selection";
 };
 
-export type stopSelectionMsg = {
+export type StopSelectionMsg = {
 	action: "stop-selection";
 };
 
-export type endSelectionMsg = {
+export type EndSelectionMsg = {
 	action: "end-selection";
 	selectedRegion: SelectedRegion;
 	devicePixelRatio: number;
 };
 
-export type resultMsg = {
+export type ResultMsg = {
 	action: "result";
 	text: string;
 }
 
-export type stopResultMsg = {
+export type StopResultMsg = {
 	action: "stop-ocr";
 };
 
-export type requestMsg = {
+export type RequestMsg = {
 	action: "ocr-request";
 	selectedRegion: SelectedRegion;
 	devicePixelRatio: number;
 };
 
-export type imageMsg = {
+export type ImageMsg = {
 	action: "ocr-image";
 	dataUrl: string;
 	selectedRegion: SelectedRegion;
@@ -40,3 +40,9 @@ export type SelectedRegion = {
 	width: number;
 	height: number;
 };
+
+export type ResourceType = "brick" | "lumber" | "wool" | "grain" | "ore" | "unknown";
+
+export type ResourceCounter = Record<ResourceType, number>;
+
+export type CardCounter = Record<string, ResourceCounter>;

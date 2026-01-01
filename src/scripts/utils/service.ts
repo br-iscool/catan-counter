@@ -1,7 +1,7 @@
-import type { endSelectionMsg, imageMsg, requestMsg, resultMsg, startSelectionMsg } from "../../types/types";
+import type { EndSelectionMsg, ImageMsg, RequestMsg, ResultMsg, StartSelectionMsg } from "../../types/types";
 
 chrome.runtime.onMessage.addListener(
-    (msg: resultMsg | startSelectionMsg | requestMsg | endSelectionMsg, sender) => {
+    (msg: ResultMsg | StartSelectionMsg | RequestMsg | EndSelectionMsg, sender) => {
 
         if (msg.action === "end-selection") {
             const tabId = sender.tab?.id;
@@ -40,7 +40,7 @@ chrome.runtime.onMessage.addListener(
                     return;
                 }
 
-                const payload: imageMsg = {
+                const payload: ImageMsg = {
                     action: "ocr-image",
                     dataUrl,
                     selectedRegion: msg.selectedRegion,

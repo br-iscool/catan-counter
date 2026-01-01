@@ -1,4 +1,4 @@
-import type { startSelectionMsg, endSelectionMsg, stopSelectionMsg } from "../types/types";
+import type { StartSelectionMsg, EndSelectionMsg, StopSelectionMsg } from "../types/types";
 
 let startX = 0;
 let startY = 0;
@@ -13,7 +13,7 @@ declare global {
 if (!globalThis.isInitialized) {
     globalThis.isInitialized = true;
 
-    chrome.runtime.onMessage.addListener((msg: startSelectionMsg | stopSelectionMsg) => {
+    chrome.runtime.onMessage.addListener((msg: StartSelectionMsg | StopSelectionMsg) => {
         if (msg.action === "start-selection") {
             createOverlay();
             return;
@@ -96,7 +96,7 @@ function onMouseUp() {
     const selectedRegion = selectionBox!.getBoundingClientRect();
     const devicePixelRatio = window.devicePixelRatio || 1;
 
-    chrome.runtime.sendMessage<endSelectionMsg>({
+    chrome.runtime.sendMessage<EndSelectionMsg>({
         action: "end-selection",
         selectedRegion: {
             left: selectedRegion.left,

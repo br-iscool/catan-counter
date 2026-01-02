@@ -9,9 +9,98 @@
     z-index: 999999;
 }
 
-
 .selection {
     position: absolute;
     border: 2px dashed #fff;
     background: rgba(255,255,255,0.1);
+}
+
+/* in page hud showing card counts */
+#catan-counter-hud {
+    position: fixed;
+    z-index: 1000000;
+    pointer-events: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#catan-counter-hud-panel {
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(0, 0, 0, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 10px 12px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    min-width: 260px;
+}
+
+#catan-counter-hud-handle {
+    position: relative;
+    pointer-events: auto;
+    cursor: grab;
+    user-select: none;
+    background: rgba(0, 0, 0, 0.55);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    padding: 8px 12px;
+    font-size: 12px;
+    line-height: 1.2;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+    margin: -10px -12px 10px -12px;
+    border-radius: 10px 10px 0 0;
+}
+
+body.catan-counter-is-dragging {
+    user-select: none;
+    cursor: grabbing;
+}
+
+body.catan-counter-is-dragging #catan-counter-hud-handle {
+    cursor: grabbing;
+}
+.catan-counter-hud-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-top: 0;
+    font-size: 12px;
+}
+
+.catan-counter-hud-player {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.catan-counter-hud-name {
+    font-weight: 600;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.catan-counter-hud-counts {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 6px;
+    font-variant-numeric: tabular-nums;
+}
+
+.catan-counter-hud-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 3px 6px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.catan-counter-hud-chip img {
+    width: 14px;
+    height: 14px;
 }
